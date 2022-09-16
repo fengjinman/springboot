@@ -1,26 +1,23 @@
 package com.jinman.service.impl;
 
-import com.jinman.dao.UserDao;
+import com.jinman.dao.UserMapper;
 import com.jinman.entity.User;
 import com.jinman.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
 
 /**
  * Created by fengjinman Administrator on 2018/6/15.
  */
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
-    @Resource
-    private UserDao userDao;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public User findUserById(int id) {
 
-        return userDao.findUserById(id);
+        return userMapper.findUserById(id);
     }
 }

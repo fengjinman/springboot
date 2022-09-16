@@ -1,34 +1,15 @@
 package com.jinman.entity;
 
+import lombok.Data;
+
 /**
  * Created by fengjinman Administrator on 2018/6/15.
  */
+@Data
 public class User {
 
-    private int id;
-    private String username;
+    int id;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                '}';
-    }
+    String username;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }

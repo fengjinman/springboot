@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jinman.dao.UserDao">
+<mapper namespace="com.jinman.dao.UserMapper">
 
     <select id="findUserById" resultType="com.jinman.entity.User">
         select id,username from user where id = #{id}

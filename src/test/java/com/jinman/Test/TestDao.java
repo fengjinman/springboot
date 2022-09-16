@@ -1,7 +1,7 @@
 package com.jinman.Test;
 
 import com.jinman.SpringbootdemoApplication;
-import com.jinman.dao.UserDao;
+import com.jinman.dao.UserMapper;
 import com.jinman.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,13 +18,13 @@ import javax.annotation.Resource;
 public class TestDao {
 
     @Resource
-    private UserDao userDao;
+    private UserMapper userMapper;
 
     @Test
     public void test1(){
         int id = 1;
-        System.out.println(userDao);
-        User user = userDao.findUserById(id);
+        System.out.println(userMapper);
+        User user = userMapper.findUserById(id);
         System.out.println("user = "+user);
     }
 }
