@@ -14,5 +14,8 @@ public class SpringbootApplication {
         System.out.println("http://localhost:8089/testDbQuery?id=1");
         System.out.println("http://localhost:8089/testPage");
         System.out.println("http://localhost:8089/testPagePath");
+
+        System.out.println("http://localhost:8089/reptile?uid=5593532821");
+        System.out.println("http://localhost:8089/reptilePage");
     }
 }
