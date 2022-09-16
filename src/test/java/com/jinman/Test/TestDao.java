@@ -1,8 +1,8 @@
 package com.jinman.Test;
 
 import com.jinman.SpringbootApplication;
-import com.jinman.dao.UserMapper;
-import com.jinman.entity.User;
+import com.jinman.test.dao.UserMapper;
+import com.jinman.test.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

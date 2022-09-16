@@ -1,8 +1,8 @@
-package com.jinman.service.impl;
+package com.jinman.test.service.impl;
 
-import com.jinman.dao.UserMapper;
-import com.jinman.entity.User;
-import com.jinman.service.UserService;
+import com.jinman.test.dao.UserMapper;
+import com.jinman.test.entity.User;
+import com.jinman.test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

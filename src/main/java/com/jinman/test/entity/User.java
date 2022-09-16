@@ -1,4 +1,4 @@
-package com.jinman.entity;
+package com.jinman.test.entity;
 
 import lombok.Data;
 

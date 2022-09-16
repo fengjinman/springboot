@@ -1,6 +1,6 @@
-package com.jinman.dao;
+package com.jinman.test.dao;
 
-import com.jinman.entity.User;
+import com.jinman.test.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
