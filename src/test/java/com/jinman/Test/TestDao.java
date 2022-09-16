@@ -1,6 +1,6 @@
 package com.jinman.Test;
 
-import com.jinman.SpringbootdemoApplication;
+import com.jinman.SpringbootApplication;
 import com.jinman.dao.UserMapper;
 import com.jinman.entity.User;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  * Created by fengjinman Administrator on 2018/6/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes=SpringbootdemoApplication.class)
+@SpringBootTest(classes= SpringbootApplication.class)
 public class TestDao {
 
     @Resource
