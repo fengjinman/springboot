@@ -34,6 +34,9 @@
 <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
 <!--<script src="echarts.min.js"></script>-->
 <script type="text/javascript">
+    let option = {};
+
+    // 进度条
     const n = 0;
     const load = document.getElementById('load');
     const result = document.getElementById('result');
@@ -63,304 +66,116 @@
             result.innerText=i+'%';
 
             if(i>=100){
-                console.log("clearInterval(timer);")
+
+                // 结束循环调用
                 clearInterval(timer);
+                // 查询进度达到100% 获取数据
+                $.ajax({
+                    type : "get",  //提交方式
+                    url : "/reptile/queryData",//路径
+                    data : {
+                        "uid" : "5593532821"
+                    },//数据，这里使用的是Json格式进行传输
+                    success : function(result) {//返回数据根据结果进行相应的处理
+                        console.log(result)
+                        if ( result.code === 200 ) {
+                            console.log("result pro = "+JSON.stringify(result.data))
+                            // 更新数据
+                            option = result.data;
+                            // 重新渲染
+                            init();
+                        } else {
+                            console.log("fail")
+                        }
+                    }
+                });
             }
         }
 
         console.log("i = "+i)
         // }
     },100);
-    require.config({
-        paths: {
-            echarts: 'http://echarts.baidu.com/build/dist'
-        }
-    });
-    require(["echarts", "echarts/chart/force"], function(ec) {
-        var myChart = ec.init(document.getElementById('main'), 'macarons');
-        var option = {
-            tooltip: {
-                show: false
-            },
-            series: [{
-                type: 'force',
-                name: "Force tree",
-                itemStyle: {
-                    normal: {
-                        label: {
-                            show: true
-                        },
-                        nodeStyle: {
-                            brushType: 'both',
-                            borderColor: 'rgba(0,215,0,0.4)',
-                            borderWidth: 1
-                        }
-                    }
-                },
-                categories: [{
-                    name: 'lol'
-                }, {
-                    name: '位置'
-                }, {
-                    name: '英雄'
-                }, {
-                    name: '技能'
-                }],
-                nodes: [{
-                    id: 0,
-                    category: 0,
-                    name: '0',
-                    label: '峡谷之巅',
-                    symbolSize: 60,
-                    ignore: false,
-                    flag: true
-                }, {
-                    id: 1,
-                    category: 1,
-                    name: '1',
-                    label: '上单',
-                    symbolSize: 40,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 2,
-                    category: 2,
-                    name: '2',
-                    label: '剑姬',
-                    symbolSize: 20,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 3,
-                    category: 2,
-                    name: '3',
-                    label: '贾科斯',
-                    symbolSize: 20,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 4,
-                    category: 1,
-                    name: '4',
-                    label: '中单',
-                    symbolSize: 40,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 5,
-                    category: 2,
-                    name: '5',
-                    label: '辛德拉',
-                    symbolSize: 20,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 6,
-                    category: 2,
-                    name: '6',
-                    label: '阿卡丽',
-                    symbolSize: 20,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 7,
-                    category: 2,
-                    name: '7',
-                    label: '发条',
-                    symbolSize: 20,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 8,
-                    category: 1,
-                    name: '8',
-                    label: '打野',
-                    symbolSize: 40,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 9,
-                    category: 2,
-                    name: '9',
-                    label: '扎克',
-                    symbolSize: 20,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 10,
-                    category: 2,
-                    name: '10',
-                    label: '男枪',
-                    symbolSize: 20,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 11,
-                    category: 2,
-                    name: '11',
-                    label: '豹女',
-                    symbolSize: 20,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 12,
-                    category: 2,
-                    name: '12',
-                    label: '千珏',
-                    symbolSize: 20,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 13,
-                    category: 3,
-                    name: '13',
-                    label: '隼舞',
-                    number: 45,
-                    symbolSize: 20,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 14,
-                    category: 3,
-                    name: '14',
-                    label: '寒影',
-                    number: 52,
-                    symbolSize: 20,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 15,
-                    category: 3,
-                    name: '15',
-                    label: '霞阵',
-                    number: 52,
-                    symbolSize: 20,
-                    ignore: true,
-                    flag: true
-                }, {
-                    id: 16,
-                    category: 3,
-                    name: '16',
-                    label: '幻樱杀缭乱',
-                    number: 52,
-                    symbolSize: 30,
-                    ignore: true,
-                    flag: true
-                }],
-                links: [{
-                    source: 1,
-                    target: 0
-                }, {
-                    source: 4,
-                    target: 0
-                }, {
-                    source: 8,
-                    target: 0
-                }, {
-                    source: 2,
-                    target: 1
-                }, {
-                    source: 3,
-                    target: 1
-                }, {
-                    source: 5,
-                    target: 4
-                }, {
-                    source: 6,
-                    target: 4
-                }, {
-                    source: 7,
-                    target: 4
-                }, {
-                    source: 9,
-                    target: 8
-                }, {
-                    source: 10,
-                    target: 8
-                }, {
-                    source: 11,
-                    target: 8
-                }, {
-                    source: 12,
-                    target: 8
-                }, {
-                    source: 13,
-                    target: 6
-                }, {
-                    source: 14,
-                    target: 6
-                }, {
-                    source: 15,
-                    target: 6
-                }, {
-                    source: 16,
-                    target: 6
-                }]
-            }]
-        };
-        myChart.setOption(option);
-        var ecConfig = require('echarts/config');
 
-        function openOrFold(param) {
-            var option = myChart.getOption();
-            var nodesOption = option.series[0].nodes;
-            var linksOption = option.series[0].links;
-            var data = param.data;
-            var linksNodes = [];
+    function init(){
+        // 关系图
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        require(["echarts", "echarts/chart/force"], function(ec) {
+            const myChart = ec.init(document.getElementById('main'), 'macarons');
 
-            var categoryLength = option.series[0].categories.length;
+            myChart.setOption(option);
+            const ecConfig = require('echarts/config');
 
-            if (data != null) {
-                if (data.flag) {
+            function openOrFold(param) {
+                let m;
+                let p;
+                const option = myChart.getOption();
+                const nodesOption = option.series[0].nodes;
+                const linksOption = option.series[0].links;
+                const data = param.data;
+                const linksNodes = [];
 
-                    for (var m in linksOption) {
+                const categoryLength = option.series[0].categories.length;
 
-                        if (linksOption[m].target === data.id) {
-                            linksNodes.push(linksOption[m].source);
-                        }
-                    }
-                    if (linksNodes != null) {
-                        for (var p in linksNodes) {
-                            nodesOption[linksNodes[p]].ignore = false;
-                            nodesOption[linksNodes[p]].flag = true;
-                        }
-                    }
-                    nodesOption[data.id].flag = false;
-                    myChart.setOption(option);
-                } else {
+                if (data != null) {
+                    if (data.flag) {
 
-                    for (var m in linksOption) {
+                        for (m in linksOption) {
 
-                        if (linksOption[m].target === data.id) {
-                            linksNodes.push(linksOption[m].source);
+                            if (linksOption[m].target === data.id) {
+                                linksNodes.push(linksOption[m].source);
+                            }
                         }
                         if (linksNodes != null) {
-                            for (var n in linksNodes) {
-                                if (linksOption[m].target === linksNodes[n]) {
-                                    linksNodes.push(linksOption[m].source);
+                            for (p in linksNodes) {
+                                nodesOption[linksNodes[p]].ignore = false;
+                                nodesOption[linksNodes[p]].flag = true;
+                            }
+                        }
+                        nodesOption[data.id].flag = false;
+                        myChart.setOption(option);
+                    } else {
+
+                        for (m in linksOption) {
+
+                            if (linksOption[m].target === data.id) {
+                                linksNodes.push(linksOption[m].source);
+                            }
+                            if (linksNodes != null) {
+                                for (const n in linksNodes) {
+                                    if (linksOption[m].target === linksNodes[n]) {
+                                        linksNodes.push(linksOption[m].source);
+                                    }
                                 }
                             }
                         }
-                    }
-                    if (linksNodes != null) {
-                        for (var p in linksNodes) {
-                            nodesOption[linksNodes[p]].ignore = true;
-                            nodesOption[linksNodes[p]].flag = true;
+                        if (linksNodes != null) {
+                            for (p in linksNodes) {
+                                nodesOption[linksNodes[p]].ignore = true;
+                                nodesOption[linksNodes[p]].flag = true;
+                            }
                         }
+                        nodesOption[data.id].flag = true;
+                        myChart.setOption(option);
                     }
-                    nodesOption[data.id].flag = true;
-                    myChart.setOption(option);
                 }
             }
-        }
-        myChart.on(ecConfig.EVENT.CLICK, openOrFold);
-        myChart.on('click', function(param) {
-            url = 'https://www.ruan8.com/wenda/12132.html'
-            if (param.data['category'] === '3') {
-                window.open(url)
-            }
+            myChart.on(ecConfig.EVENT.CLICK, openOrFold);
+            myChart.on('click', function(param) {
+                url = 'https://www.ruan8.com/wenda/12132.html'
+                if (param.data['category'] === '3') {
+                    alert("open url")
+                    window.open(url)
+                }
+            });
         });
-    });
+    }
+
+    init()
+
 </script>
 
 </body>

@@ -2,72 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>自定义项目首页</title>
-    <style type="text/css">
-        *{
-            margin: 0;
-            padding: 0;
-            /*background-color: #EAEAEA;*/
-        }
-        div{
-            width: 200px;
-            height: 200px;
-            /*background-color: #1E90FF;*/
-        }
-        .center-in-center{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            -moz-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            -o-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-        }
-        input:focus{
-            border-color: #66afe9;
-            outline: 0;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
-        }
-    </style>
-
+    <title>微博爬虫</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 </head>
 <body>
-<div class="center-in-center">
-    <label for="uidText">微博uid</label>
-    <input id="uidText" type="text" onkeydown="keyup_submit(event)" value="5593532821">
+<div class="input-group col-md-3" style="margin-top: 10%;positon:relative;margin-left: 35%">
+    <input id="uidText" type="text" value="5593532821" class="form-control"placeholder="微博uid" />
+    <span class="input-group-btn">
+    <button class="btn btn-info btn-search" onclick="crawlingData()">爬数据</button>
+    </span>
 </div>
-
-
 </body>
 </html>
 <!-- #在head 里 script标签 通过src=引用 -->
 <script src="jquery-3.5.1.min.js"></script>
 <!-- #重新创建script标签写JS函数 -->
 <script>
-    function keyup_submit(e){
-        const evt = window.event || e;
-        if (evt.keyCode === 13){
-            //回车事件
-            console.log("调用搜索店内商品信息")
-            $.ajax({
-                type : "get",  //提交方式
-                url : "/reptile/start",//路径
-                data : {
-                    "uid" : $("#uidText").val()
-                },//数据，这里使用的是Json格式进行传输
-                success : function(result) {//返回数据根据结果进行相应的处理
-                    console.log(result)
-                    if ( result.code === 200 ) {
-                        console.log("success")
-                        location.href = "/reptilePage";
-                    } else {
-                        console.log("fail")
-                    }
+    function crawlingData(){
+        $.ajax({
+            type : "get",  //提交方式
+            url : "/reptile/start",//路径
+            data : {
+                "uid" : $("#uidText").val()
+            },//数据，这里使用的是Json格式进行传输
+            success : function(result) {//返回数据根据结果进行相应的处理
+                console.log(result)
+                if ( result.code === 200 ) {
+                    console.log("success")
+                    location.href = "/reptilePage";
+                } else {
+                    console.log("fail")
                 }
-            });
-        }
+            }
+        });
     }
-
 </script>

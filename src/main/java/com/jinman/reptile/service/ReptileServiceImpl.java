@@ -1,5 +1,6 @@
 package com.jinman.reptile.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jinman.reptile.ReptileThread;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,9 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class ReptileServiceImpl implements ReptileService {
 
-    public static final Map<String, Integer> MAP = new ConcurrentHashMap<>();
+    public static final Map<String, Integer> MAP_PRO = new ConcurrentHashMap<>();
+
+    public static final Map<String, JSONObject> MAP_DATA = new ConcurrentHashMap<>();
 
     @Override
     public void asynchronous(String uid) {
@@ -22,16 +25,26 @@ public class ReptileServiceImpl implements ReptileService {
         // 登录微博的问题  进度条
 
         ReptileThread reptileThread = new ReptileThread(uid);
-        MAP.put(uid, 0);
+        MAP_PRO.put(uid, 0);
+        MAP_DATA.put(uid, new JSONObject());
         reptileThread.start();
     }
 
     @Override
     public int queryPro(String uid) {
-        Integer pro = MAP.get(uid);
+        Integer pro = MAP_PRO.get(uid);
         if (Objects.nonNull(pro)) {
             return pro;
         }
         return 10000;
+    }
+
+    @Override
+    public JSONObject queryData(String uid) {
+        JSONObject data = MAP_DATA.get(uid);
+        if(Objects.nonNull(data)){
+            return data;
+        }
+        return new JSONObject();
     }
 }
