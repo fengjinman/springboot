@@ -1,3 +1,6 @@
 // OpenSSL SSL_read: Connection was reset, errno 10054
 // git config --global --unset http.proxy
 // git config --global --unset https.proxy
+
+热部署：
+https://blog.csdn.net/wlm123565/article/details/120723576
