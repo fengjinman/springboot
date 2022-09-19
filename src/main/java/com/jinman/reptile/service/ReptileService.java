@@ -4,5 +4,5 @@ public interface ReptileService {
 
     void asynchronous(String uid);
 
-    double queryPro();
+    int queryPro(String uid);
 }

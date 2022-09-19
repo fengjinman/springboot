@@ -7,7 +7,7 @@
         *{
             margin: 0;
             padding: 0;
-            background-color: #EAEAEA;
+            /*background-color: #EAEAEA;*/
         }
         div{
             width: 200px;
@@ -24,16 +24,11 @@
             -o-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
         }
-        *{margin:0;padding:0;}
-        .box{
-            width: 300px;
-            height:10px;
-            border:1px solid #9e9e9e;
-        }
-        .load{
-            width:0px;
-            height:10px;
-            background:#325976;
+        input:focus{
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
         }
     </style>
 
@@ -43,13 +38,7 @@
     <label for="uidText">微博uid</label>
     <input id="uidText" type="text" onkeydown="keyup_submit(event)" value="5593532821">
 </div>
-<!--<label>正在爬虫，当前进度：</label>-->
-<!--<div style="left:10%;position:absolute;top: 20%;font-size:70px">-->
-<!--    <div class="box" id="div_box">-->
-<!--        <div class="load" id="load"></div>-->
-<!--    </div>-->
-<!--    <span id='result' style=""></span>-->
-<!--</div>-->
+
 
 </body>
 </html>
@@ -64,7 +53,7 @@
             console.log("调用搜索店内商品信息")
             $.ajax({
                 type : "get",  //提交方式
-                url : "/reptile",//路径
+                url : "/reptile/start",//路径
                 data : {
                     "uid" : $("#uidText").val()
                 },//数据，这里使用的是Json格式进行传输
@@ -81,22 +70,4 @@
         }
     }
 
-    // const n = 0;
-    // const load = document.getElementById('load');
-    // const result = document.getElementById('result');
-    // let i=0;
-    // const timer=setInterval(function(){
-    //     // for(i=0;i<=100;i++){
-    //     // i+=1;
-    //     if(i<100){
-    //         i+=1;
-    //         load.style.width=i*3+'px';
-    //         result.innerText=i+'%';
-    //     }
-    //     if(i>=100){
-    //         clearInterval(timer);
-    //     }
-    //     console.log(i)
-    //     // }
-    // },100);
 </script>

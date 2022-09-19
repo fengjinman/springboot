@@ -19,14 +19,13 @@ public class ReptileController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/reptile")
+    @RequestMapping("/reptile/start")
     public Object reptile(String uid) {
 
         reptileService.asynchronous(uid);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("code", 200);
-        jsonObject.put("msg", "正在爬虫...");
         jsonObject.put("uid", uid);
         return jsonObject;
     }
@@ -38,8 +37,8 @@ public class ReptileController {
 
     @ResponseBody
     @RequestMapping("/reptile/queryPro")
-    public Object reptile() {
-        double pro = reptileService.queryPro();
+    public Object queryPro(String uid) {
+        int pro = reptileService.queryPro(uid);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("code", 200);
         jsonObject.put("pro", pro);

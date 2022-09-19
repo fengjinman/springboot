@@ -4,13 +4,15 @@ import com.jinman.reptile.ReptileThread;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
+
 @Slf4j
 @Service
 public class ReptileServiceImpl implements ReptileService {
 
-    public static int TOTAL = 0;
-
-    public static int PRO = 0;
+    public static final Map<String, Integer> MAP = new ConcurrentHashMap<>();
 
     @Override
     public void asynchronous(String uid) {
@@ -20,14 +22,16 @@ public class ReptileServiceImpl implements ReptileService {
         // 登录微博的问题  进度条
 
         ReptileThread reptileThread = new ReptileThread(uid);
+        MAP.put(uid, 0);
         reptileThread.start();
     }
 
     @Override
-    public double queryPro() {
-        if (TOTAL != 0 && PRO != 0) {
-            return (double) PRO / TOTAL;
+    public int queryPro(String uid) {
+        Integer pro = MAP.get(uid);
+        if (Objects.nonNull(pro)) {
+            return pro;
         }
-        return 0;
+        return 10000;
     }
 }

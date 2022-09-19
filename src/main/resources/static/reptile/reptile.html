@@ -20,15 +20,15 @@
 </head>
 
 <body>
-<div id="main" style="width: 1200px; height: 700px"></div>
-<div id="ss"></div>
-<label>正在爬虫，当前进度：</label>
-<div style="left:10%;position:absolute;top: 20%;font-size:70px">
+<label style="left:10%;position:absolute;top: 5%;font-size:70px">正在爬虫，当前进度：</label>
+<div style="right:38%;position:absolute;top: 7%;font-size:70px">
     <div class="box" id="div_box">
         <div class="load" id="load"></div>
     </div>
     <span id='result' style=""></span>
 </div>
+<div id="main" style="position:absolute;top: 15%;width: 1200px; height: 700px"></div>
+<!--<div id="ss" style="top: 10%"></div>-->
 <script src="jquery-3.5.1.min.js"></script>
 <!--网络线上-->
 <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
@@ -46,13 +46,13 @@
                 type : "get",  //提交方式
                 url : "/reptile/queryPro",//路径
                 data : {
-
+                    "uid" : "5593532821"
                 },//数据，这里使用的是Json格式进行传输
                 success : function(result) {//返回数据根据结果进行相应的处理
                     console.log(result)
                     if ( result.code === 200 ) {
                         console.log("result pro = "+result.pro)
-                        i = result.pro * 100;
+                        i = result.pro;
                     } else {
                         console.log("fail")
                     }
